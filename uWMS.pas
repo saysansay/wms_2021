@@ -8,7 +8,8 @@ uses
   cxLookAndFeels, cxLookAndFeelPainters, cxClasses, dxSkinsCore,
   dxSkinOffice2013White, dxRibbonCustomizationForm, dxStatusBar,
   dxRibbonStatusBar, dxBarApplicationMenu, Vcl.ComCtrls, cxSplitter,
-  Vcl.ExtCtrls, Data.DB, MemDS, DBAccess, Uni;
+  Vcl.ExtCtrls, Data.DB, MemDS, DBAccess, Uni, cxPC, dxBarBuiltInMenu,
+  dxTabbedMDI, Vcl.ImgList, cxImageList, Vcl.StdCtrls;
 
 type
   TfrmWMS = class(TdxRibbonForm)
@@ -20,13 +21,20 @@ type
     dxRibbonStatusBar1: TdxRibbonStatusBar;
     Panel1: TPanel;
     cxSplitter1: TcxSplitter;
-    Panel2: TPanel;
     TreeView1: TTreeView;
     qryMenu: TUniQuery;
+    MDIMAIN: TdxTabbedMDIManager;
+    imglist: TcxImageList;
+    edNode: TEdit;
+    mnFile: TdxBarButton;
+    mnExit: TdxBarButton;
     procedure FormShow(Sender: TObject);
+    procedure edNodeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure mnExitClick(Sender: TObject);
   private
     { Private declarations }
     procedure CreateTreeMenu(ParentID :Integer;Node :TTreeNode);
+    function GetNodeByText(ATree : TTreeView; AValue:String; AVisible: Boolean): TTreeNode;
   public
     { Public declarations }
   end;
@@ -78,12 +86,58 @@ begin
 
 end;
 
+procedure TfrmWMS.edNodeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+ tn : TTreeNode;
+begin
+  if Key=VK_RETURN then
+  begin
+    tn :=GetNodeByText(TreeView1,edNode.Text,True);
+    if tn = nil then
+      ShowMessage('Not found!')
+   else begin
+   TreeView1.SetFocus;
+   tn.Selected := True;
+   end;
+  end;
+
+end;
+
 procedure TfrmWMS.FormShow(Sender: TObject);
 var
   topNode: TTreeNode;
 begin
-  topNode := TreeView1.Items.Add(Nil, 'Root Node');
-  CreateTreeMenu(0, topNode);
+  topNode := TreeView1.Items.Add(Nil, 'Navigation');
+  CreateTreeMenu(0,topNode);
+end;
+
+function TfrmWMS.GetNodeByText(ATree: TTreeView; AValue: String;
+  AVisible: Boolean): TTreeNode;
+var
+ Node: TTreeNode;
+begin
+ Result := nil;
+ if ATree.Items.Count = 0 then Exit;
+ Node := ATree.Items[0];
+ while Node<>nil do
+ begin
+ if UpperCase(Node.Text) = UpperCase(AValue) then
+ begin
+ Result := Node;
+ if AVisible then
+ Result.MakeVisible;
+ Break;
+ end;
+ Node := Node.GetNext;
+ end;
+end;
+
+procedure TfrmWMS.mnExitClick(Sender: TObject);
+begin
+  if MessageDlg('Are you sure exit this application ?',mtConfirmation,[mbYes,mbNo],0)=mrYes then
+     Application.Terminate;
+
 end;
 
 end.
