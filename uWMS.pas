@@ -31,10 +31,14 @@ type
     procedure FormShow(Sender: TObject);
     procedure edNodeKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure mnExitClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
     procedure CreateTreeMenu(ParentID :Integer;Node :TTreeNode);
     function GetNodeByText(ATree : TTreeView; AValue:String; AVisible: Boolean): TTreeNode;
+    procedure CreateForm(const FormName:string);
   public
     { Public declarations }
   end;
@@ -46,9 +50,34 @@ implementation
 
 {$R *.dfm}
 
-uses uCON;
+uses uCON, uBase;
 
 { TfrmWMS }
+
+procedure TfrmWMS.Button1Click(Sender: TObject);
+begin
+  Edit2.Text :=DM.XorEncode(Edit1.Text,'KEY1010')
+end;
+
+procedure TfrmWMS.Button2Click(Sender: TObject);
+begin
+  //Memo1.Lines.Add(DM.XorDecode(Edit2.Text,'KEY1010'))
+end;
+
+procedure TfrmWMS.CreateForm(const FormName: string);
+var
+  fc : TFormClass;
+  f : TForm;
+begin
+  fc := TFormClass(FindClass(FormName));
+  if Assigned(f) then
+     f.Show
+  else
+    begin
+      f := fc.Create(Application);
+      f.Show;
+    end;
+end;
 
 procedure TfrmWMS.CreateTreeMenu(ParentID: Integer; Node: TTreeNode);
 var
@@ -104,6 +133,11 @@ begin
 
 end;
 
+procedure TfrmWMS.FormCreate(Sender: TObject);
+begin
+   //ShowMessage(DM.XorEncode('uprit','xtbcabcdefghijk'));
+end;
+
 procedure TfrmWMS.FormShow(Sender: TObject);
 var
   topNode: TTreeNode;
@@ -119,15 +153,15 @@ var
 begin
  Result := nil;
  if ATree.Items.Count = 0 then Exit;
- Node := ATree.Items[0];
+    Node := ATree.Items[0];
  while Node<>nil do
  begin
  if UpperCase(Node.Text) = UpperCase(AValue) then
  begin
- Result := Node;
- if AVisible then
- Result.MakeVisible;
- Break;
+   Result := Node;
+   if AVisible then
+     Result.MakeVisible;
+   Break;
  end;
  Node := Node.GetNext;
  end;
@@ -140,4 +174,6 @@ begin
 
 end;
 
+initialization
+ RegisterClass(TfrmBase)
 end.

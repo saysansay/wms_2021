@@ -4,15 +4,14 @@ uses
   Vcl.Forms,
   uBase in 'uBase.pas' {frmBase},
   uWMS in 'uWMS.pas' {frmWMS},
-  uCON in 'uCON.pas' {DataModule1: TDataModule};
+  uCON in 'uCON.pas' {DM: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDM, DM);
   Application.CreateForm(TfrmWMS, frmWMS);
-  Application.CreateForm(TDataModule1, DataModule1);
-  Application.CreateForm(TfrmBase, frmBase);
   Application.Run;
 end.

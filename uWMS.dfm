@@ -12,6 +12,7 @@ object frmWMS: TfrmWMS
   Font.Style = []
   FormStyle = fsMDIForm
   OldCreateOrder = True
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
@@ -19,19 +20,18 @@ object frmWMS: TfrmWMS
     Left = 0
     Top = 0
     Width = 640
-    Height = 159
+    Height = 160
     ApplicationButton.Menu = dxBarApplicationMenu1
     BarManager = dxBarManager1
     CapitalizeTabCaptions = bDefault
+    Style = rs2010
+    ColorSchemeAccent = rcsaOrange
     ColorSchemeName = 'Blue'
     QuickAccessToolbar.Toolbar = dxBarManager1Bar1
     SupportNonClientDrawing = True
     Contexts = <>
     TabOrder = 0
     TabStop = False
-    ExplicitLeft = -2
-    ExplicitTop = 1
-    ExplicitWidth = 634
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Home'
@@ -54,9 +54,9 @@ object frmWMS: TfrmWMS
   end
   object Panel1: TPanel
     Left = 0
-    Top = 159
+    Top = 160
     Width = 185
-    Height = 298
+    Height = 297
     Align = alLeft
     Caption = 'Panel1'
     TabOrder = 2
@@ -66,7 +66,7 @@ object frmWMS: TfrmWMS
       Left = 1
       Top = 23
       Width = 183
-      Height = 274
+      Height = 273
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -79,8 +79,7 @@ object frmWMS: TfrmWMS
       ShowButtons = False
       ShowRoot = False
       TabOrder = 0
-      ExplicitLeft = -4
-      ExplicitTop = 18
+      ExplicitHeight = 298
     end
     object edNode: TEdit
       Left = 1
@@ -90,16 +89,13 @@ object frmWMS: TfrmWMS
       Align = alTop
       TabOrder = 1
       OnKeyDown = edNodeKeyDown
-      ExplicitLeft = 64
-      ExplicitTop = 276
-      ExplicitWidth = 121
     end
   end
   object cxSplitter1: TcxSplitter
     Left = 185
-    Top = 159
+    Top = 160
     Width = 8
-    Height = 298
+    Height = 297
     HotZoneClassName = 'TcxSimpleStyle'
     Control = Panel1
     ExplicitTop = 135
@@ -178,21 +174,21 @@ object frmWMS: TfrmWMS
     PixelsPerInch = 96
   end
   object qryMenu: TUniQuery
-    Connection = DataModule1.dbCON
-    Left = 312
-    Top = 248
+    Connection = DM.dbCON
+    Left = 200
+    Top = 168
   end
   object MDIMAIN: TdxTabbedMDIManager
     Active = True
     TabProperties.CustomButtons.Buttons = <>
-    Left = 288
-    Top = 288
+    Left = 200
+    Top = 216
     PixelsPerInch = 96
   end
   object imglist: TcxImageList
     SourceDPI = 96
     FormatVersion = 1
-    DesignInfo = 14680320
+    DesignInfo = 11010280
     ImageInfo = <
       item
         Image.Data = {
