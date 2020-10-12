@@ -2,8 +2,8 @@ object frmWMS: TfrmWMS
   Left = 0
   Top = 0
   Caption = 'WMS'
-  ClientHeight = 480
-  ClientWidth = 640
+  ClientHeight = 571
+  ClientWidth = 758
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object frmWMS: TfrmWMS
   object dxRibbon1: TdxRibbon
     Left = 0
     Top = 0
-    Width = 640
+    Width = 758
     Height = 160
     ApplicationButton.Menu = dxBarApplicationMenu1
     BarManager = dxBarManager1
@@ -32,6 +32,7 @@ object frmWMS: TfrmWMS
     Contexts = <>
     TabOrder = 0
     TabStop = False
+    ExplicitWidth = 640
     object dxRibbon1Tab1: TdxRibbonTab
       Active = True
       Caption = 'Home'
@@ -41,8 +42,8 @@ object frmWMS: TfrmWMS
   end
   object dxRibbonStatusBar1: TdxRibbonStatusBar
     Left = 0
-    Top = 457
-    Width = 640
+    Top = 548
+    Width = 758
     Height = 23
     Panels = <>
     Ribbon = dxRibbon1
@@ -51,22 +52,24 @@ object frmWMS: TfrmWMS
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ExplicitTop = 457
+    ExplicitWidth = 640
   end
   object Panel1: TPanel
     Left = 0
     Top = 160
     Width = 185
-    Height = 297
+    Height = 388
     Align = alLeft
     Caption = 'Panel1'
     TabOrder = 2
-    ExplicitTop = 135
-    ExplicitHeight = 322
+    ExplicitTop = 136
+    ExplicitHeight = 321
     object TreeView1: TTreeView
       Left = 1
       Top = 23
       Width = 183
-      Height = 273
+      Height = 364
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -79,7 +82,7 @@ object frmWMS: TfrmWMS
       ShowButtons = False
       ShowRoot = False
       TabOrder = 0
-      ExplicitHeight = 298
+      ExplicitHeight = 297
     end
     object edNode: TEdit
       Left = 1
@@ -95,11 +98,11 @@ object frmWMS: TfrmWMS
     Left = 185
     Top = 160
     Width = 8
-    Height = 297
+    Height = 388
     HotZoneClassName = 'TcxSimpleStyle'
     Control = Panel1
-    ExplicitTop = 135
-    ExplicitHeight = 322
+    ExplicitTop = 136
+    ExplicitHeight = 321
   end
   object dxBarManager1: TdxBarManager
     Font.Charset = DEFAULT_CHARSET
